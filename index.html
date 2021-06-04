@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Glassmorphism Product Card Slider UI Design</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+</head>
+<body>
+    <section class="container">  
+        <ul class="thumb">
+            <li class="thumb-slide" onmouseover="changeImageSrc('/ProductCardSlider/Images/shoes1.png')">
+                <img class="a" src="/ProductCardSlider/Images/shoes1.png" alt="shoes1">
+            </li>
+            <li class="thumb-slide" onmouseover="changeImageSrc('/ProductCardSlider/Images/shoes2.png')">
+                <img src="/ProductCardSlider/Images/shoes2.png" alt="shoes2">
+            </li>
+            <li class="thumb-slide" onmouseover="changeImageSrc('/ProductCardSlider/Images/shoes3.png')">
+                <img src="/ProductCardSlider/Images/shoes3.png" alt="shoes3">
+            </li>
+        </ul>
+        <div class="btn-slides">
+            <a href="#" class="pre btn-slide" onclick="plusSlide(-1)"><i class="fas fa-angle-up"></i></a>
+            <a href="#" class="next btn-slide" onclick="plusSlide(1)"><i class="fas fa-angle-down"></i></a>
+        </div>
+        <div class="img-box">
+            <h2 class="title">
+                Nike air zoom
+            </h2>
+            <div class="img-product">
+                <img class="shoess" src="/ProductCardSlider/Images/shoes1.png" alt="shoes1">
+            </div>
+            <ul class="size">
+                <li class="title">Size</li>
+                <li>40</li>
+                <li>41</li>
+                <li>42</li>
+                <li>43</li>
+            </ul>
+            <div class="add-to-cart">
+                <a href="#" class="btn">Add to cart</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+<script>
+    function changeImageSrc(any){
+        document.querySelector('.shoess').src = any;
+    }
+
+    var slideIndex = 1;
+    showSlide(slideIndex);
+
+    function plusSlide(n){
+        showSlide(slideIndex += n);
+    }
+    function showSlide(index){
+        var slides = document.getElementsByClassName('thumb-slide');
+        if(index < 1){
+            slideIndex = slides.length;
+        }
+        if(index > slides.length){
+            slideIndex = 1;
+        }
+        var arr = Array.from(slides);
+        arr.forEach(element => {
+            element.style.display = 'none';
+        });  
+        slides[slideIndex - 1].style.display = 'flex';
+        var shoesImage = Array.from(slides[slideIndex - 1].children);
+        document.querySelector('.shoess').src =  shoesImage[0].src;    
+    }
+</script>
